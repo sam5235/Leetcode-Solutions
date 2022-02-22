@@ -16,7 +16,8 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         while(!pq.isEmpty()){
             Char temp = pq.poll();
-            for(int i = 0; i < temp.freq; i++) sb.append(temp.c);
+            String st = temp.c +"";
+            sb.append(st.repeat(temp.freq));
                
         }
         return sb.toString();
