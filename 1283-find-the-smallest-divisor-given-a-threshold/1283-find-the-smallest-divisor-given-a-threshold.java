@@ -5,7 +5,7 @@ class Solution {
           for(int num : nums){
            high = Math.max(high, num);
               }
-        System.out.println(sumCalc(3, nums));
+
         int ans = high;
         
         while(low <= high){
@@ -16,7 +16,7 @@ class Solution {
             } else {
                 high = mid - 1;
                 ans = Math.min(ans, mid);
-               // System.out.println(ans);
+               
             }
         }
         return ans;
