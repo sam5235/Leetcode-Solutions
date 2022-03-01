@@ -17,13 +17,6 @@ class Solution {
            }
     }
     public boolean isOutOfBound(int m, int n, int r, int c){
-        if(r < 0){
-            return true;
-        } else if(r > m-1) return true;
-        if(c < 0){
-            return true;
-        }else if(c > n -1) return true;
-        
-        return false;
+        return (r < 0) || (r > m-1) || (c < 0) ||(c > n -1);
     }
 }
