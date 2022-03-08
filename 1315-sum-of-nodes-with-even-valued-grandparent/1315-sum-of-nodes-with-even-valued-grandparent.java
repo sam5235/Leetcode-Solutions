@@ -15,34 +15,17 @@
  */
 class Solution {
     public int sumEvenGrandparent(TreeNode root) {
-        int[] ans ={0} ;
-        dfs(root, ans);
+        int[] ans = {0};
+        dfs(root, 1, 1, ans);
         return ans[0];
     }
     
-    void dfs(TreeNode node, int[] sum){
+    void dfs(TreeNode node, int parent, int granPa, int[] sum){
         if(node == null) return;
-        if(node.val % 2 == 0){
-            if(node.left != null){
-                TreeNode left = node.left;
-                if(left.left != null){
-                    sum[0] = sum[0] + left.left.val;
-                }
-                if(left.right != null){
-                    sum[0] = sum[0] + left.right.val;
-                }
-            }
-            if(node.right != null){
-                 TreeNode right = node.right;
-                if(right.left != null){
-                    sum[0] = sum[0] + right.left.val;
-                }
-                if(right.right != null){
-                    sum[0] = sum[0] + right.right.val;
-                }
-            }
+        if(granPa % 2 == 0) {
+            sum[0] += node.val;
         }
-        if(node.left != null) dfs(node.left, sum);
-        if(node.right != null) dfs(node.right, sum);
+        dfs(node.left, node.val, parent, sum);
+        dfs(node.right, node.val, parent, sum);
     }
 }
