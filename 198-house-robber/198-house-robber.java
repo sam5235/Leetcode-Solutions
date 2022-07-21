@@ -6,12 +6,8 @@ class Solution {
     int fun(int[] nums, HashMap<Integer, Integer> memo, int idx){
         if(idx >= nums.length) return 0;
         if(memo.containsKey(idx)) return memo.get(idx);
-        int fIdx = 0;
         int i = idx + 2;
-        while(i < nums.length){
-            fIdx = Math.max(fIdx, fun(nums, memo, i));
-            i++;
-        }
+        int fIdx = Math.max(fun(nums, memo, i), fun(nums, memo, i + 1));
         fIdx = fIdx + nums[idx];
         memo.put(idx, fIdx);
         return fIdx;
