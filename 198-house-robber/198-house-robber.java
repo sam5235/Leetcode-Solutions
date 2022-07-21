@@ -7,8 +7,7 @@ class Solution {
         if(idx >= nums.length) return 0;
         if(memo.containsKey(idx)) return memo.get(idx);
         int i = idx + 2;
-        int fIdx = Math.max(fun(nums, memo, i), fun(nums, memo, i + 1));
-        fIdx = fIdx + nums[idx];
+        int fIdx = Math.max(fun(nums, memo, i), fun(nums, memo, i + 1)) + nums[idx];
         memo.put(idx, fIdx);
         return fIdx;
     }
