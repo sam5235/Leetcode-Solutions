@@ -2,8 +2,6 @@ class Solution {
     public boolean possibleBipartition(int n, int[][] dislikes) {
         if(dislikes.length == 0) return true;
         HashMap<Integer, List<Integer>> map = new HashMap<>();
-        HashSet<Integer> set = new HashSet<>();
-        Queue<Integer> curr = new LinkedList<>();
         int[] roots = new int[n + 1];
         for(int i = 0; i < roots.length; i++) roots[i] = i;
         for(int i = 1; i <= n; i++){
