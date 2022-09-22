@@ -7,7 +7,7 @@ class Solution {
         while(i >= 0 || j >= 0 || remain > 0){
                 int t = remain + val(a, i) + val(b, j);
                 st.add( t % 2);
-                remain = t / 2;
+                remain = t >> 1;
                 i--;
                 j--;
         }
