@@ -1,13 +1,13 @@
 class LFUCache {
     int capacity;
     HashMap<Integer, Node> map;
-    PriorityQueue<Node> pQue;
+    TreeSet<Node> pQue;
     int timer;
     public LFUCache(int capacity) {
         timer = 0;
         this.capacity = capacity;
         this.map = new HashMap<>();
-        this.pQue = new PriorityQueue<>((a,b)-> (a.freq == b.freq) ? b.time - a.time : a.freq - b.freq);
+        this.pQue = new TreeSet<>((a,b)-> (a.freq == b.freq) ? b.time - a.time : a.freq - b.freq);
     }
     
     public int get(int key) {
@@ -27,7 +27,7 @@ class LFUCache {
         timer--;
         if(capacity == 0) return;
         Node node;
-        if(!map.containsKey(key) && map.size() == capacity) map.remove(pQue.poll().key);
+        if(!map.containsKey(key) && map.size() == capacity) map.remove(pQue.pollFirst().key);
         if(map.containsKey(key)){
             node = map.get(key);
             pQue.remove(node);
