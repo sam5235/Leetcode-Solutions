@@ -1,15 +1,15 @@
 public class Codec {
-    HashMap<Integer, String> map;
+    String[] str;
     // Encodes a URL to a shortened URL.
     public String encode(String longUrl) {
-        map = new HashMap<>();
-        map.put(1, longUrl);
-        return "http://tinyurl.com/" + 1;
+        str = new String[1];
+        str[0] = longUrl;
+        return "http://tinyurl.com/" + 0;
     }
 
     // Decodes a shortened URL to its original URL.
     public String decode(String shortUrl) {
-        return map.get(1);
+        return str[0];
     }
 }
 
