@@ -15,18 +15,16 @@
  */
 class Solution {
     public TreeNode pruneTree(TreeNode root) {
-        return helper(root) ? null : root;
+        return helper(root);
     }
     
-    boolean helper(TreeNode node){
-        if(node == null) return true;
-        if(helper(node.left))
-            node.left = null;
-        if(helper(node.right))
-            node.right = null;
+    TreeNode helper(TreeNode node){
+        if(node == null) return null;
+        node.left = helper(node.left);
+        node.right = helper(node.right);
         if(node.left == null && node.right == null)
-            return node.val == 0;
-     return false;
+            return node.val == 0 ? null : node;
+     return node;
         
     }
 }
