@@ -9,8 +9,8 @@ class Solution {
         while(bitM >= 0){
             List<String> minute = new ArrayList<>();
             List<String> hour = new ArrayList<>();
-            dfsM(min, bitM, 0, 0, minute);
-            dfsH(hrs, bitH, 0, 0, hour);
+            dfs(min, bitM, 0, 0, minute, 59);
+            dfs(hrs, bitH, 0, 0, hour, 11);
           
 
             for(String h : hour){
@@ -26,29 +26,18 @@ class Solution {
         
     }
     
-    void dfsM(int[] min, int countB, int time, int idx, List<String> ls){
-        if(countB == 0 && time <= 59){
-            ls.add(pad(time));
+    void dfs(int[] arr, int countB, int time, int idx, List<String> ls, int limit){
+        if(countB == 0 && time <= limit){
+            ls.add(limit == 59 ?pad(time) : time + "");
             return;
         }
-        if(time > 59 || idx >= min.length)
+        if(time > limit || idx >= arr.length)
             return;
         
-        dfsM(min, countB - 1, time + min[idx], idx + 1, ls);
-        dfsM(min, countB, time, idx + 1, ls);
+        dfs(arr, countB - 1, time + arr[idx], idx + 1, ls, limit);
+        dfs(arr, countB, time, idx + 1, ls, limit);
     }
     
-    void dfsH(int[] hrs, int countB, int time, int idx, List<String> ls){
-        if(countB == 0 && time <= 11){
-            ls.add(time +"");
-            return;
-        }
-        if(time > 11 || idx >= hrs.length)
-            return;
-        
-        dfsH(hrs, countB - 1, time + hrs[idx], idx + 1, ls);
-        dfsH(hrs, countB, time, idx + 1, ls);
-    }
     String pad(int time){
         return time <= 9 ?"0" +time : time + ""; 
     }
