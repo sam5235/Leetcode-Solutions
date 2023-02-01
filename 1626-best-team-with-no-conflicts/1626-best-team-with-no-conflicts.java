@@ -1,31 +1,27 @@
 class Solution {
-    int res = 0;
     public int bestTeamScore(int[] scores, int[] ages) {
-        int len = scores.length;
-        int[][] team = new int[len][2];
-        for (int i = 0; i < len; i++) {
-            team[i][0] = ages[i];
-            team[i][1] = scores[i]; 
+        int n = scores.length;
+        int[][] pair = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            pair[i][0] = scores[i];
+            pair[i][1] = ages[i];
         }
-        Arrays.sort(team, (a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+        Arrays.sort(pair, (a, b) -> a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]);  
         
-        int[] dp = new int[len];
-        dp[0] = team[0][1];
-        for (int i = 1; i < len; i++) {
-            int max = team[i][1]; 
-            for (int j = 0; j < i; j++) {
-                if (team[i][1] >= team[j][1]) {
-                    max = Math.max(max, dp[j] + team[i][1]);
+        int[] dp = new int[n + 1];
+        int[] sum = new int[n + 1];
+        int max = 0;
+        for (int i = 1; i <= n; i++) {
+            dp[i] = pair[i-1][0];
+            for (int j = i - 1; j >= 1; j--) {
+                if (pair[j-1][1] == pair[i-1][1] || pair[j-1][0] <= pair[i-1][0]) {
+                    dp[i] = Math.max(dp[i], pair[i-1][0] + dp[j]);
                 }
             }
-            dp[i] = max;
-        }
-      
-        int res = 0;
-        for (int num : dp) {
-            res = Math.max(res, num);
+            
+            max = Math.max(max, dp[i]);
         }
         
-        return res;
+        return max;
     }
 }
