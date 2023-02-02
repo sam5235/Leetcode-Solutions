@@ -10,8 +10,8 @@ class Solution {
                    if(cmp != 0) return cmp;
                 
                    return log1.compareTo(log2);
-               }else if(Character.isLetter(log1.charAt(index1))) return -1; //log1(c) < log2(d)
-                else if(Character.isLetter(log2.charAt(index2))) return 1;  //log1(d) > log2(c)
+               }else if(Character.isLetter(log1.charAt(index1))) return -1; 
+                else if(Character.isLetter(log2.charAt(index2))) return 1;  
                 else return 0; 
                               
         });
