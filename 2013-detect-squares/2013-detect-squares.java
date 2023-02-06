@@ -34,7 +34,6 @@ class DetectSquares {
                     int yc = yentry.getKey();
                     int num = isValidSquare(x,y,xc,yc);
                     if(num != 0){
-                        //System.out.println("sq found");
                         res += yentry.getValue()*num;
                     }
                 }
