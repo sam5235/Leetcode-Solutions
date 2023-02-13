@@ -1,8 +1,6 @@
 class AllOne {
     
-	// countMap: key is key, value is the count of the key
     private Map<String, Integer> countMap;
-	// freqMap: key is count, value is keys with same count
     private TreeMap<Integer, HashSet<String>> freqMap;
 
     public AllOne() {
