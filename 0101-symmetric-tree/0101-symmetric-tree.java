@@ -15,36 +15,19 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-       List<TreeNode> cur = new ArrayList<>();
-       List<TreeNode> nxt = new ArrayList<>();
-       cur.add(root);
-       while(!cur.isEmpty()){
-            if(isReverse(cur)){
-                for(int i = 0; i < cur.size(); i++){
-                    TreeNode polled = cur.get(i); 
-                    if(polled.left == null  && polled.val != -101) nxt.add(new TreeNode(-101));
-                        else if(polled.left != null) nxt.add(polled.left);
-                    if(polled.right == null && polled.val != -101 ) nxt.add(new TreeNode(-101)) ;
-                        else if(polled.right != null) nxt.add(polled.right);
-                }
-                cur = nxt;
-                nxt = new ArrayList<>();
-            }else return false;
-          
-       } 
-         return true;
-    }
-    boolean isReverse(List<TreeNode> ls){
-        int i = 0;
-        int j = ls.size() - 1;
-        
-        while(i <= j){
-            if(ls.get(i).val != ls.get(j).val){
-                return false;
-            }
-            i++;
-            j--;
+        if (root == null) {
+            return true;
         }
-        return true;
+        return isMirror(root.left, root.right);
+    }
+    
+    private boolean isMirror(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null) {
+            return true;
+        }
+        if (node1 == null || node2 == null) {
+            return false;
+        }
+        return node1.val == node2.val && isMirror(node1.left, node2.right) && isMirror(node1.right, node2.left);
     }
 }
