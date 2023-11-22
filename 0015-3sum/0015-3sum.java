@@ -10,27 +10,20 @@ class Solution {
             while(i<nums.length&&l<r){
                 if(nums[i]+nums[l]+nums[r]<0){
                     l++;
-                    while(l<r && nums[l]==nums[l-1]){
-                        l++;
-                    }
                 }
                 else if(nums[i]+nums[l]+nums[r]>0){
                     r--;
-                    while(r>l&&nums[r]==nums[r+1]){
-                        r--;
-                    }
                 }
                 else{
                     sums.add(new ArrayList(Arrays.asList(nums[i],nums[l],nums[r])));
                     l++;
-                    r--;
-                     while(l<r && nums[l]==nums[l-1]){
+                    r--;                    
+                    while(l<r && nums[l]==nums[l-1]){
                         l++;
                     }
-                     while(r>l&&nums[r]==nums[r+1]){
+                    while(r>l&&nums[r]==nums[r+1]){
                         r--;
                     }
-                    
                 }
             }
                 i++;
